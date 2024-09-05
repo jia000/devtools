@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, toRefs } from 'vue';
+import { computed, ref } from 'vue';
 import { VueButton, VueCard, VueCheckbox, VueConfirm, VueDarkToggle, VueSelect, VueSwitch } from '@vue/devtools-ui';
-import { toReactive } from '@vueuse/core';
+import { toReactive, toRefs } from '@vueuse/core';
 
+import IconTitle from '~/components/common/IconTitle.vue';
 import { useHostEnv } from '~/composables/host';
 import { devtoolsClientState, resetDevtoolsClientState } from '~/composables/state';
 import { useAllTabs } from '~/composables/state-tab';
