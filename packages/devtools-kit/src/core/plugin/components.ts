@@ -1,6 +1,6 @@
 import { debounce } from 'perfect-debounce';
 
-import type { MApp } from '@tmagic/schema';
+import type { MApp } from '@tmagic/core';
 
 import { hook } from '../../hook';
 import type { PluginDescriptor, PluginSetupFunction, TMagicApp } from '../../types';

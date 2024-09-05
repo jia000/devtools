@@ -1,5 +1,4 @@
-import type { Node as TMagicNode } from '@tmagic/core';
-import type { Id } from '@tmagic/schema';
+import type { Id, Node as TMagicNode } from '@tmagic/core';
 
 import type { AppRecord } from '../../../types';
 

@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 
-import TMagicApp from '@tmagic/core';
-import { getUrlParam } from '@tmagic/utils';
+import TMagicApp, { getUrlParam } from '@tmagic/core';
 import Button from '@tmagic/vue-button';
 import Container from '@tmagic/vue-container';
 import Img from '@tmagic/vue-img';

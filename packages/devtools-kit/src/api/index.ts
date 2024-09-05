@@ -1,4 +1,4 @@
-import type { MApp } from '@tmagic/schema';
+import type { MApp } from '@tmagic/core';
 
 import {
   type DevtoolsContext,
