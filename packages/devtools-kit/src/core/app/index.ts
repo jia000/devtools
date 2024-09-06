@@ -1,7 +1,9 @@
 import { target } from '@vue/devtools-shared';
 import slug from 'speakingurl';
 
-import { AppRecord, TMagicApp } from '../../types';
+import type TMagicApp from '@tmagic/core';
+
+import type { AppRecord } from '../../types';
 
 // eslint-disable-next-line no-multi-assign
 const appRecordInfo = (target.__TMAGIC_DEVTOOLS_NEXT_APP_RECORD_INFO__ ??= {
@@ -18,7 +20,7 @@ export function removeAppRecordId(app: TMagicApp) {
 }
 
 function getAppRecordId(app: TMagicApp, defaultId?: string): string {
-  if (app.dsl?.id) return `${app.dsl?.id}`;
+  if (app.dsl?.id) return `${app.dsl.id}`;
 
   let id = defaultId ?? (appRecordInfo.id += 1).toString();
 
@@ -47,6 +49,7 @@ export function createAppRecord(app: TMagicApp): AppRecord {
       id,
       name,
       app,
+      dsl: app.dsl,
     };
 
     return record;

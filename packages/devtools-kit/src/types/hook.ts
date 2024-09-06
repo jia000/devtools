@@ -1,19 +1,20 @@
+import type TMagicApp from '@tmagic/core';
 import type { MApp } from '@tmagic/core';
 
-import type { AppRecord, TMagicApp } from './app';
+import type { AppRecord } from './app';
 import type { PluginDescriptor, PluginSetupFunction } from './plugin';
 
 export enum DevToolsHooks {
   APP_INIT = 'app:init',
   APP_DESTROY = 'app:destroy',
-  CONFIG_CHANGE = 'config:change',
+  DSL_CHANGE = 'dsl:change',
   SETUP_DEVTOOLS_PLUGIN = 'devtools-plugin:setup',
 }
 
 export interface DevToolsEvent {
   [DevToolsHooks.APP_INIT]: (app: TMagicApp, version: string) => void | Promise<void>;
   [DevToolsHooks.APP_DESTROY]: (app: TMagicApp) => void | Promise<void>;
-  [DevToolsHooks.CONFIG_CHANGE]: (config: MApp) => void | Promise<void>;
+  [DevToolsHooks.DSL_CHANGE]: (config: MApp) => void | Promise<void>;
   [DevToolsHooks.SETUP_DEVTOOLS_PLUGIN]: (
     pluginDescriptor: PluginDescriptor,
     setupFn: PluginSetupFunction,
@@ -39,7 +40,7 @@ export interface TMagicHooks {
   on: {
     tmagicAppInit: (fn: DevToolsEvent[DevToolsHooks.APP_INIT]) => void;
     tmagicAppDestroy: (fn: DevToolsEvent[DevToolsHooks.APP_DESTROY]) => void;
-    tmagicConfigChange: (fn: DevToolsEvent[DevToolsHooks.CONFIG_CHANGE]) => void;
+    tmagicDslChange: (fn: DevToolsEvent[DevToolsHooks.DSL_CHANGE]) => void;
     setupDevtoolsPlugin: (fn: DevToolsEvent[DevToolsHooks.SETUP_DEVTOOLS_PLUGIN]) => void;
   };
   setupDevToolsPlugin: (pluginDescriptor: PluginDescriptor, setupFn: PluginSetupFunction) => void;

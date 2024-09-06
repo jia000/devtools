@@ -7,22 +7,15 @@ import {
   DevToolsPluginAPIHookPayloads,
   getRpcClient,
   getRpcServer,
-  stringify,
   toggleClientConnected,
 } from '@tmagic/devtools-kit';
 
 const hooks = createHooks();
 
 export enum DevToolsMessagingEvents {
-  INSPECTOR_TREE_UPDATED = 'inspector-tree-updated',
-  INSPECTOR_STATE_UPDATED = 'inspector-state-updated',
+  DSL_UPDATED = 'dsl-updated',
   DEVTOOLS_STATE_UPDATED = 'devtools-state-updated',
-  ROUTER_INFO_UPDATED = 'router-info-updated',
-  TIMELINE_EVENT_UPDATED = 'timeline-event-updated',
-  INSPECTOR_UPDATED = 'inspector-updated',
-  ACTIVE_APP_UNMOUNTED = 'active-app-updated',
-  DESTROY_DEVTOOLS_CLIENT = 'destroy-devtools-client',
-  RELOAD_DEVTOOLS_CLIENT = 'reload-devtools-client',
+  ACTIVE_APP_DESTROY = 'active-app-destroy',
 }
 
 function getDevToolsState() {
@@ -37,6 +30,7 @@ function getDevToolsState() {
       id: item.id,
       name: item.name,
       version: item.version,
+      dsl: item.dsl,
     })),
     activeAppRecordId: state.activeAppRecordId,
   };
@@ -57,29 +51,30 @@ export const functions = {
   },
   heartbeat: () => true,
   devtoolsState: () => getDevToolsState(),
-  async getInspectorTree(
-    payload: Pick<DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE], 'inspectorId'>,
-  ) {
-    const res = await devtools.ctx.api.getInspectorTree(payload);
-    return stringify(res) as string;
+  async getDsl(payload: Pick<DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_DSL], 'inspectorId'>) {
+    const res = await devtools.ctx.api.getDsl(payload);
+    return res;
   },
   toggleClientConnected(state: boolean) {
     toggleClientConnected(state);
+  },
+  async toggleApp(id: string) {
+    return devtools.ctx.api.toggleApp(id);
   },
   initDevToolsServerListener() {
     const rpcServer = getRpcServer<RPCFunctions>();
     const { broadcast } = rpcServer;
 
-    devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.SEND_INSPECTOR_TREE_TO_CLIENT, (payload) => {
-      broadcast.emit(DevToolsMessagingEvents.INSPECTOR_TREE_UPDATED, stringify(payload));
+    devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.SEND_DSL_TO_CLIENT, (payload) => {
+      broadcast.emit(DevToolsMessagingEvents.DSL_UPDATED, payload);
     });
 
     devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.DEVTOOLS_STATE_UPDATED, () => {
       broadcast.emit(DevToolsMessagingEvents.DEVTOOLS_STATE_UPDATED, getDevToolsState());
     });
 
-    devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT, () => {
-      broadcast.emit(DevToolsMessagingEvents.ACTIVE_APP_UNMOUNTED);
+    devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.SEND_ACTIVE_APP_DESTROY_TO_CLIENT, () => {
+      broadcast.emit(DevToolsMessagingEvents.ACTIVE_APP_DESTROY);
     });
   },
 };

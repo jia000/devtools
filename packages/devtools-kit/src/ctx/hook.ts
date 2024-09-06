@@ -1,41 +1,38 @@
 import { createHooks } from 'hookable';
 
 export interface DevToolsPluginAPIHookPayloads {
-  [DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE]: {
+  [DevToolsPluginAPIHookKeys.GET_DSL]: {
     inspectorId: string;
   };
 }
 
 export interface DevToolsPluginAPIHooks {
-  [DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE]: (
-    payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE],
+  [DevToolsPluginAPIHookKeys.GET_DSL]: (
+    payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_DSL],
   ) => void;
 }
 
 export enum DevToolsPluginAPIHookKeys {
-  GET_INSPECTOR_TREE = 'getInspectorTree',
-  GET_INSPECTOR_STATE = 'getInspectorState',
+  GET_DSL = 'getDsl',
 }
 
 export enum DevToolsContextHookKeys {
-  SEND_INSPECTOR_TREE = 'sendInspectorTree',
-  SEND_INSPECTOR_STATE = 'sendInspectorState',
+  SEND_DSL = 'sendDsl',
 }
 
 // devtools client hooks
 export enum DevToolsMessagingHookKeys {
-  SEND_INSPECTOR_TREE_TO_CLIENT = 'sendInspectorTreeToClient',
-  SEND_INSPECTOR_STATE_TO_CLIENT = 'sendInspectorStateToClient',
+  SEND_DSL_TO_CLIENT = 'sendDslToClient',
   DEVTOOLS_STATE_UPDATED = 'devtoolsStateUpdated',
   DEVTOOLS_CONNECTED_UPDATED = 'devtoolsConnectedUpdated',
-  SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT = 'sendActiveAppUpdatedToClient',
+  SEND_ACTIVE_APP_DESTROY_TO_CLIENT = 'sendActiveAppUpdatedToClient',
 }
 
 export function createDevToolsCtxHooks() {
   const hooks = createHooks();
 
   // send inspector tree
-  hooks.hook(DevToolsContextHookKeys.SEND_INSPECTOR_TREE, async ({ config, inspectorId, plugin }) => {
+  hooks.hook(DevToolsContextHookKeys.SEND_DSL, async ({ config, inspectorId, plugin }) => {
     if (!config || !plugin?.descriptor?.app) return;
 
     const _payload = {
@@ -45,7 +42,7 @@ export function createDevToolsCtxHooks() {
 
     hooks.callHookWith(async (callbacks) => {
       await Promise.all(callbacks.map((cb) => cb(_payload)));
-    }, DevToolsMessagingHookKeys.SEND_INSPECTOR_TREE_TO_CLIENT);
+    }, DevToolsMessagingHookKeys.SEND_DSL_TO_CLIENT);
   });
 
   return hooks;

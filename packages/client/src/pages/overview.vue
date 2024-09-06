@@ -4,7 +4,6 @@ import { isInChromePanel, isInElectron, isMacOS } from '@vue/devtools-shared';
 import { VueButton } from '@vue/devtools-ui';
 
 import { DevToolsMessagingEvents, onDevToolsConnected, rpc, useDevToolsState } from '@tmagic/devtools-core';
-import { parse } from '@tmagic/devtools-kit';
 
 import { version } from '../../../core/package.json';
 
@@ -23,28 +22,23 @@ function normalizeComponentCount(data: any[]) {
   return count;
 }
 
-function onInspectorTreeUpdated(_data: string) {
-  const data = parse(_data) as {
-    inspectorId: string;
-    config: any;
-  };
+function onInspectorTreeUpdated(data: any) {
+  if (data.inspectorId !== 'pages') return;
 
-  if (data.inspectorId !== 'root') return;
-
-  pageCount.value = data.config.items?.length;
-  nodeCount.value = normalizeComponentCount(data.config.items || []);
+  pageCount.value = data.config?.items?.length;
+  nodeCount.value = normalizeComponentCount(data.config?.items || []);
 }
 
 onDevToolsConnected(() => {
-  rpc.value.getInspectorTree({ inspectorId: 'root' }).then((_data) => {
+  rpc.value.getDsl({ inspectorId: 'pages' }).then((_data) => {
     onInspectorTreeUpdated(_data);
   });
 });
 
-rpc.functions.on(DevToolsMessagingEvents.INSPECTOR_TREE_UPDATED, onInspectorTreeUpdated);
+rpc.functions.on(DevToolsMessagingEvents.DSL_UPDATED, onInspectorTreeUpdated);
 
 onUnmounted(() => {
-  rpc.functions.off(DevToolsMessagingEvents.INSPECTOR_TREE_UPDATED, onInspectorTreeUpdated);
+  rpc.functions.off(DevToolsMessagingEvents.DSL_UPDATED, onInspectorTreeUpdated);
 });
 </script>
 

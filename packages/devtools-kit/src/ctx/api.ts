@@ -8,18 +8,17 @@ import { activeAppRecord, devtoolsAppRecords, setActiveAppRecord, setActiveAppRe
 export function createDevToolsApi(hooks: Hookable) {
   return {
     // get inspector tree
-    async getInspectorTree(
-      payload: Pick<DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE], 'inspectorId'>,
-    ) {
+    async getDsl(payload: Pick<DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_DSL], 'inspectorId'>) {
       const _payload = {
         ...payload,
-        config: activeAppRecord.value.app.dsl,
+        config: activeAppRecord.value.dsl,
       };
+
       await new Promise<void>((resolve) => {
         hooks.callHookWith(async (callbacks) => {
           await Promise.all(callbacks.map((cb) => cb(_payload)));
           resolve();
-        }, DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE);
+        }, DevToolsPluginAPIHookKeys.GET_DSL);
       });
 
       return _payload;

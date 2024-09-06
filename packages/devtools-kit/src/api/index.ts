@@ -18,13 +18,13 @@ export class DevToolsPluginAPI {
 
   public get on() {
     return {
-      getInspectorTree: (handler: DevToolsPluginAPIHooks[DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE]) => {
-        this.hooks.hook(DevToolsPluginAPIHookKeys.GET_INSPECTOR_TREE, handler);
+      getDsl: (handler: DevToolsPluginAPIHooks[DevToolsPluginAPIHookKeys.GET_DSL]) => {
+        this.hooks.hook(DevToolsPluginAPIHookKeys.GET_DSL, handler);
       },
     };
   }
 
-  sendInspectorTree({ config, inspectorId }: { config: MApp; inspectorId: string }) {
-    this.hooks.callHook(DevToolsContextHookKeys.SEND_INSPECTOR_TREE, { config, inspectorId, plugin: this.plugin });
+  sendDsl({ config, inspectorId }: { config: MApp; inspectorId: string }) {
+    this.hooks.callHook(DevToolsContextHookKeys.SEND_DSL, { config, inspectorId, plugin: this.plugin });
   }
 }

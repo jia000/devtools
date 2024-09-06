@@ -1,6 +1,6 @@
-import type { DevToolsPluginAPI } from '../api';
+import type TMagicApp from '@tmagic/core';
 
-import { TMagicApp } from './app';
+import type { DevToolsPluginAPI } from '../api';
 
 type PluginSettingsItem = {
   label: string;
@@ -30,7 +30,7 @@ export type PluginSetupFunction = (api: InstanceType<typeof DevToolsPluginAPI>) 
 export interface PluginDescriptor {
   id: string;
   label: string;
-  app: TMagicApp;
+  app?: TMagicApp;
   packageName?: string;
   homepage?: string;
   componentStateTypes?: string[];

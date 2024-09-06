@@ -25,7 +25,7 @@ export function TMagicDevToolsVuePlugin() {
     install(app: App) {
       const state = createDevToolsStateContext();
       state.getDevToolsState();
-      app.provide(TMagicDevToolsStateSymbol, state);
+      app.provide(TMagicDevToolsStateSymbol, state as any);
       app.config.globalProperties.$getDevToolsState = state.getDevToolsState;
       app.config.globalProperties.$disconnectDevToolsClient = () => {
         state.clientConnected.value = false;
