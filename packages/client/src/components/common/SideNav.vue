@@ -3,7 +3,10 @@ import { computed, ref } from 'vue';
 import { VueDropdown } from '@vue/devtools-ui';
 import { onClickOutside, useResizeObserver, useWindowSize } from '@vueuse/core';
 
+import DockingPanel from './DockingPanel.vue';
 import SideNavItem from './SideNavItem.vue';
+import TabIcon from './TabIcon.vue';
+import TabsGrid from './TabsGrid.vue';
 
 import { devtoolsClientState } from '~/composables/state';
 import { getCategorizedTabs, useAllTabs } from '~/composables/state-tab';

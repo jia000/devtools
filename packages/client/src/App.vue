@@ -92,7 +92,7 @@ function onActiveAppUnmounted() {
 }
 
 onDevToolsConnected(() => {
-  rpc.functions.on(DevToolsMessagingEvents.ACTIVE_APP_UNMOUNTED, onActiveAppUnmounted);
+  rpc.functions.on(DevToolsMessagingEvents.ACTIVE_APP_DESTROY, onActiveAppUnmounted);
 });
 
 onMounted(() => {
@@ -103,7 +103,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   rpc.value.toggleClientConnected(false);
-  rpc.functions.off(DevToolsMessagingEvents.ACTIVE_APP_UNMOUNTED, onActiveAppUnmounted);
+  rpc.functions.off(DevToolsMessagingEvents.ACTIVE_APP_DESTROY, onActiveAppUnmounted);
 });
 </script>
 
@@ -130,6 +130,5 @@ onUnmounted(() => {
         </Pane>
       </Splitpanes>
     </div>
-    <CommandPalette />
   </main>
 </template>

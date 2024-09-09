@@ -4,6 +4,7 @@ import { VueButton, VueCard, VueCheckbox, VueConfirm, VueDarkToggle, VueSelect, 
 import { toReactive, toRefs } from '@vueuse/core';
 
 import IconTitle from '~/components/common/IconTitle.vue';
+import TabIcon from '~/components/common/TabIcon.vue';
 import { useHostEnv } from '~/composables/host';
 import { devtoolsClientState, resetDevtoolsClientState } from '~/composables/state';
 import { useAllTabs } from '~/composables/state-tab';

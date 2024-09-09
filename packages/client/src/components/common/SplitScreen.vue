@@ -5,6 +5,8 @@ import { vTooltip, VueButton, VueCard, VueDropdown } from '@vue/devtools-ui';
 
 import { CustomTab } from '@tmagic/devtools-kit';
 
+import TabIcon from './TabIcon.vue';
+
 import { devtoolsClientState } from '~/composables/state';
 import { useAllTabs } from '~/composables/state-tab';
 import { CUSTOM_INSPECTOR_TAB_VIEW, CUSTOM_TAB_VIEW } from '~/constants/tab';

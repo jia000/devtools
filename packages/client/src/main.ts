@@ -16,13 +16,13 @@ import '~/assets/styles/main.css';
 
 import WaitForConnection from '~/components/WaitForConnection.vue';
 import Index from '~/pages/index.vue';
+import Nodes from '~/pages/nodes.vue';
 import Overview from '~/pages/overview.vue';
-import Pages from '~/pages/pages.vue';
 
 const routes = [
   { path: '/', component: Index },
   { path: '/overview', component: Overview },
-  { path: '/pages', component: Pages },
+  { path: '/nodes', component: Nodes },
   { path: '/settings', component: Settings },
 ];
 

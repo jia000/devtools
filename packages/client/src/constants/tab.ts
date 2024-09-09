@@ -21,13 +21,6 @@ export const builtinTab: [string, ModuleBuiltinTab[]][] = [
         path: 'nodes',
         title: 'Nodes',
       },
-      {
-        icon: 'i-carbon-tree-view-alt',
-        name: 'pages',
-        order: -100,
-        path: 'pages',
-        title: 'Pages',
-      },
     ],
   ],
 ];

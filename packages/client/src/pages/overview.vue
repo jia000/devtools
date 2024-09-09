@@ -36,6 +36,7 @@ onDevToolsConnected(() => {
 });
 
 rpc.functions.on(DevToolsMessagingEvents.DSL_UPDATED, onInspectorTreeUpdated);
+rpc.functions.on(DevToolsMessagingEvents.PAGE_UPDATED, onInspectorTreeUpdated);
 
 onUnmounted(() => {
   rpc.functions.off(DevToolsMessagingEvents.DSL_UPDATED, onInspectorTreeUpdated);
@@ -70,10 +71,10 @@ onUnmounted(() => {
           </div>
           <code>v{{ tmagicVersion }}</code>
         </div>
-        <RouterLink flex="~ col auto" to="/pages" replace min-w-40 p4 theme-card-lime>
+        <div flex="~ col auto" replace min-w-40 p4 theme-card-lime>
           <div i-carbon-tree-view-alt text-3xl />
           <div>{{ pageCount }} pages</div>
-        </RouterLink>
+        </div>
         <RouterLink v-if="nodeCount" flex="~ col auto" to="/nodes" replace min-w-40 p4 theme-card-lime>
           <div i-carbon-assembly-cluster text-3xl />
           <div>{{ nodeCount }} nodes</div>
