@@ -47,7 +47,6 @@ export function initDevTools() {
     const appRecord = createAppRecord(app);
     const normalizedAppRecord = {
       ...appRecord,
-      app,
       version,
     };
     addDevToolsAppRecord(normalizedAppRecord);
@@ -81,7 +80,7 @@ export function initDevTools() {
 
     if (activeAppRecord.value.app === app) {
       setActiveAppRecord(activeRecords[0]);
-      devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT);
+      devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.SEND_ACTIVE_APP_DESTROY_TO_CLIENT);
     }
     target.__TMAGIC_DEVTOOLS_GLOBAL_HOOK__.apps.splice(target.__TMAGIC_DEVTOOLS_GLOBAL_HOOK__.apps.indexOf(app), 1);
   });

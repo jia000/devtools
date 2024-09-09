@@ -14,6 +14,7 @@ const hooks = createHooks();
 
 export enum DevToolsMessagingEvents {
   DSL_UPDATED = 'dsl-updated',
+  PAGE_UPDATED = 'page-updated',
   DEVTOOLS_STATE_UPDATED = 'devtools-state-updated',
   ACTIVE_APP_DESTROY = 'active-app-destroy',
 }
@@ -30,7 +31,8 @@ function getDevToolsState() {
       id: item.id,
       name: item.name,
       version: item.version,
-      dsl: item.dsl,
+      dsl: item.app?.dsl,
+      activePageId: item.app?.page?.data.id,
     })),
     activeAppRecordId: state.activeAppRecordId,
   };
@@ -66,7 +68,13 @@ export const functions = {
     const { broadcast } = rpcServer;
 
     devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.SEND_DSL_TO_CLIENT, (payload) => {
-      broadcast.emit(DevToolsMessagingEvents.DSL_UPDATED, payload);
+      if (payload.inspectorId === 'pages') {
+        broadcast.emit(DevToolsMessagingEvents.DSL_UPDATED, payload);
+      }
+
+      if (payload.inspectorId === 'active-page') {
+        broadcast.emit(DevToolsMessagingEvents.PAGE_UPDATED, payload);
+      }
     });
 
     devtools.ctx.hooks.hook(DevToolsMessagingHookKeys.DEVTOOLS_STATE_UPDATED, () => {

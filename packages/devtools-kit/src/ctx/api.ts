@@ -11,7 +11,8 @@ export function createDevToolsApi(hooks: Hookable) {
     async getDsl(payload: Pick<DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_DSL], 'inspectorId'>) {
       const _payload = {
         ...payload,
-        config: activeAppRecord.value.dsl,
+        config: activeAppRecord.value.app?.dsl,
+        activePageId: activeAppRecord.value.app?.page?.data.id,
       };
 
       await new Promise<void>((resolve) => {

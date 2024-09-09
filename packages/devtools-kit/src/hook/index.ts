@@ -17,8 +17,11 @@ const on: TMagicHooks['on'] = {
   tmagicAppDestroy(fn) {
     devtoolsHooks.hook(DevToolsHooks.APP_DESTROY, fn);
   },
-  tmagicConfigChange(fn) {
-    devtoolsHooks.hook(DevToolsHooks.CONFIG_CHANGE, fn);
+  tmagicDslChange(fn) {
+    devtoolsHooks.hook(DevToolsHooks.DSL_CHANGE, fn);
+  },
+  tmagicPageChange(fn) {
+    devtoolsHooks.hook(DevToolsHooks.PAGE_CHANGE, fn);
   },
   setupDevtoolsPlugin(fn) {
     devtoolsHooks.hook(DevToolsHooks.SETUP_DEVTOOLS_PLUGIN, fn);
@@ -73,8 +76,12 @@ export function subscribeDevToolsHook() {
     devtoolsHooks.callHook(DevToolsHooks.APP_DESTROY, app);
   });
 
-  hook.on<DevToolsEvent[DevToolsHooks.CONFIG_CHANGE]>(DevToolsHooks.CONFIG_CHANGE, (config) => {
-    devtoolsHooks.callHook(DevToolsHooks.CONFIG_CHANGE, config);
+  hook.on<DevToolsEvent[DevToolsHooks.DSL_CHANGE]>(DevToolsHooks.DSL_CHANGE, (config) => {
+    devtoolsHooks.callHook(DevToolsHooks.DSL_CHANGE, config);
+  });
+
+  hook.on<DevToolsEvent[DevToolsHooks.PAGE_CHANGE]>(DevToolsHooks.PAGE_CHANGE, (config) => {
+    devtoolsHooks.callHook(DevToolsHooks.PAGE_CHANGE, config);
   });
 }
 

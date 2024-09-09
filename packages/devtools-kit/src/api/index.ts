@@ -1,4 +1,4 @@
-import type { MApp } from '@tmagic/core';
+import type { Id, MApp } from '@tmagic/core';
 
 import {
   type DevtoolsContext,
@@ -24,7 +24,7 @@ export class DevToolsPluginAPI {
     };
   }
 
-  sendDsl({ config, inspectorId }: { config: MApp; inspectorId: string }) {
-    this.hooks.callHook(DevToolsContextHookKeys.SEND_DSL, { config, inspectorId, plugin: this.plugin });
+  sendDsl({ config, activePageId, inspectorId }: { config: MApp; activePageId?: Id; inspectorId: string }) {
+    this.hooks.callHook(DevToolsContextHookKeys.SEND_DSL, { config, activePageId, inspectorId, plugin: this.plugin });
   }
 }

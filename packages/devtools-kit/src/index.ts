@@ -6,7 +6,6 @@ export * from './core';
 export * from './ctx';
 export * from './messaging';
 export type * from './types';
-export { parse, stringify } from './shared';
 
 export const devtools = {
   hook,

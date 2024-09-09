@@ -1,9 +1,11 @@
 import { target } from '@vue/devtools-shared';
 
+import type TMagicApp from '@tmagic/core';
+
 import { DevToolsPluginAPI } from '../../api';
 import { devtoolsContext, devtoolsPluginBuffer } from '../../ctx';
 import { hook } from '../../hook';
-import type { PluginDescriptor, PluginSetupFunction, TMagicApp } from '../../types';
+import type { PluginDescriptor, PluginSetupFunction } from '../../types';
 
 export * from './components';
 

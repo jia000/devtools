@@ -49,7 +49,6 @@ export function createAppRecord(app: TMagicApp): AppRecord {
       id,
       name,
       app,
-      dsl: app.dsl,
     };
 
     return record;

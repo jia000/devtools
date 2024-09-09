@@ -16,12 +16,24 @@ export function createComponentsDevToolsPlugin(app?: TMagicApp): [PluginDescript
   };
 
   const setupFn: PluginSetupFunction = (api) => {
-    const debounceSendDsl = debounce((data: { config: MApp; inspectorId: string }) => {
-      api.sendDsl(data);
+    const debounceSendDsl = debounce((data: { inspectorId: string }) => {
+      if (!app) return;
+
+      api.sendDsl({
+        ...data,
+        config: app.dsl!,
+        activePageId: app.page?.data.id,
+      });
     }, 120);
 
     hook.on.tmagicDslChange((config: MApp) => {
-      debounceSendDsl({ config, inspectorId: 'pages' });
+      if (config.id === app?.dsl?.id) {
+        debounceSendDsl({ inspectorId: 'pages' });
+      }
+    });
+
+    hook.on.tmagicPageChange(() => {
+      debounceSendDsl({ inspectorId: 'active-page' });
     });
   };
 

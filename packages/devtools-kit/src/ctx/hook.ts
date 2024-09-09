@@ -32,12 +32,13 @@ export function createDevToolsCtxHooks() {
   const hooks = createHooks();
 
   // send inspector tree
-  hooks.hook(DevToolsContextHookKeys.SEND_DSL, async ({ config, inspectorId, plugin }) => {
+  hooks.hook(DevToolsContextHookKeys.SEND_DSL, async ({ config, activePageId, inspectorId, plugin }) => {
     if (!config || !plugin?.descriptor?.app) return;
 
     const _payload = {
       config,
       inspectorId,
+      activePageId,
     };
 
     hooks.callHookWith(async (callbacks) => {
