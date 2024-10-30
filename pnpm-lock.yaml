@@ -107,6 +107,12 @@ importers:
       minimatch:
         specifier: ^10.0.1
         version: 10.0.1
+      perfect-debounce:
+        specifier: ^1.0.0
+        version: 1.0.0
+      serialize-javascript:
+        specifier: ^6.0.2
+        version: 6.0.2
       shiki:
         specifier: ^1.16.1
         version: 1.16.2
@@ -119,6 +125,9 @@ importers:
       vite-hot-client:
         specifier: ^0.2.3
         version: 0.2.3(vite@5.4.2(@types/node@20.16.1)(sass@1.77.8))
+      vue-json-pretty:
+        specifier: ^2.4.0
+        version: 2.4.0(vue@3.5.1(typescript@5.5.4))
       vue-router:
         specifier: ^4.4.3
         version: 4.4.3(vue@3.5.1(typescript@5.5.4))
@@ -132,6 +141,9 @@ importers:
       '@types/node':
         specifier: ^20.16.1
         version: 20.16.1
+      '@types/serialize-javascript':
+        specifier: ^5.0.4
+        version: 5.0.4
       '@types/splitpanes':
         specifier: ^2.2.6
         version: 2.2.6
@@ -1534,6 +1546,9 @@ packages:
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+
+  '@types/serialize-javascript@5.0.4':
+    resolution: {integrity: sha512-Z2R7UKFuNWCP8eoa2o9e5rkD3hmWxx/1L0CYz0k2BZzGh0PhEVMp9kfGiqEml/0IglwNERXZ2hwNzIrSz/KHTA==}
 
   '@types/splitpanes@2.2.6':
     resolution: {integrity: sha512-3dV5sO1Ht74iER4jJU03mreL3f+Q2h47ZqXS6Sfbqc6hkCvsDrX1GA0NbYWRdNvZemPyTDzUoApWKeoGbALwkQ==}
@@ -4038,6 +4053,9 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  randombytes@2.1.0:
+    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
+
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
@@ -4169,6 +4187,9 @@ packages:
     resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
     engines: {node: '>=10'}
     hasBin: true
+
+  serialize-javascript@6.0.2:
+    resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -4706,6 +4727,12 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
+
+  vue-json-pretty@2.4.0:
+    resolution: {integrity: sha512-e9bP41DYYIc2tWaB6KuwqFJq5odZ8/GkE6vHQuGcbPn37kGk4a3n1RNw3ZYeDrl66NWXgTlOfS+M6NKkowmkWw==}
+    engines: {node: '>= 10.0.0', npm: '>= 5.0.0'}
+    peerDependencies:
+      vue: '>=3.0.0'
 
   vue-observe-visibility@2.0.0-alpha.1:
     resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
@@ -5883,6 +5910,8 @@ snapshots:
 
   '@types/semver@7.5.8': {}
 
+  '@types/serialize-javascript@5.0.4': {}
+
   '@types/splitpanes@2.2.6':
     dependencies:
       vue: 2.7.16
@@ -6480,8 +6509,8 @@ snapshots:
     dependencies:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
-      '@vue/compiler-dom': 3.4.38
-      '@vue/shared': 3.4.38
+      '@vue/compiler-dom': 3.5.1
+      '@vue/shared': 3.5.1
       computeds: 0.0.1
       minimatch: 9.0.5
       muggle-string: 0.3.1
@@ -8798,6 +8827,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  randombytes@2.1.0:
+    dependencies:
+      safe-buffer: 5.2.1
+
   readable-stream@3.6.2:
     dependencies:
       inherits: 2.0.4
@@ -8942,6 +8975,10 @@ snapshots:
     optional: true
 
   semver@7.6.3: {}
+
+  serialize-javascript@6.0.2:
+    dependencies:
+      randombytes: 2.1.0
 
   set-blocking@2.0.0:
     optional: true
@@ -9602,6 +9639,10 @@ snapshots:
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
+
+  vue-json-pretty@2.4.0(vue@3.5.1(typescript@5.5.4)):
+    dependencies:
+      vue: 3.5.1(typescript@5.5.4)
 
   vue-observe-visibility@2.0.0-alpha.1(vue@3.5.1(typescript@5.5.4)):
     dependencies:

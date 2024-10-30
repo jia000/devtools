@@ -5,6 +5,8 @@
     "lib": ["esnext", "dom"],
     "module": "esnext",
     "paths": {
+      "@tmagic/devtools-core": ["../core/src/index.ts"],
+      "@tmagic/devtools-kit": ["../devtools-kit/src/index.ts"],
       "~/*": ["./src/*"]
     },
     "types": [

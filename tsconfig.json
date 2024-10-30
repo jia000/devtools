@@ -6,8 +6,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@vue/devtools-core": ["./packages/core/src/index.ts"],
-      "@vue/devtools-kit": ["./packages/devtools-kit/src/index.ts"]
+      "@tmagic/devtools-core": ["./packages/core/src/index.ts"],
+      "@tmagic/devtools-kit": ["./packages/devtools-kit/src/index.ts"]
     },
     "resolveJsonModule": true,
     "types": [

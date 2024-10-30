@@ -2,7 +2,7 @@ import type { Hookable } from 'hookable';
 
 import { getComponentInspector } from '../core/component-inspector';
 
-import { DevToolsPluginAPIHookKeys, DevToolsPluginAPIHookPayloads } from './hook';
+import { DevToolsContextHookKeys, DevToolsPluginAPIHookKeys, DevToolsPluginAPIHookPayloads } from './hook';
 import { activeAppRecord, devtoolsAppRecords, setActiveAppRecord, setActiveAppRecordId } from './state';
 
 export function createDevToolsApi(hooks: Hookable) {
@@ -23,6 +23,27 @@ export function createDevToolsApi(hooks: Hookable) {
       });
 
       return _payload;
+    },
+    editInspectorState(payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG]) {
+      const _payload = {
+        ...payload,
+        app: activeAppRecord.value.app,
+        set: () => {
+        },
+      };
+
+      hooks.callHookWith((callbacks) => {
+        callbacks.forEach((cb) => cb(_payload));
+      }, DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG);
+    },
+    // send inspector state
+    sendInspectorState(inspectorId: string) {
+      hooks.callHook(DevToolsContextHookKeys.SEND_NODE_CONFIG, {
+        inspectorId,
+        plugin: {
+          setupFn: () => ({}),
+        },
+      });
     },
     // scroll to component
     scrollToComponent(_id: string) {},

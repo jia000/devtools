@@ -57,6 +57,12 @@ export const functions = {
     const res = await devtools.ctx.api.getDsl(payload);
     return res;
   },
+  async editInspectorState(payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG]) {
+    return await devtools.ctx.api.editInspectorState(payload);
+  },
+  sendInspectorState(id: string) {
+    return devtools.ctx.api.sendInspectorState(id);
+  },
   toggleClientConnected(state: boolean) {
     toggleClientConnected(state);
   },

@@ -3,6 +3,7 @@ import { devtoolsContext } from './ctx';
 import { hook } from './hook';
 
 export * from './core';
+export { formatInspectorStateValue, toEdit, toSubmit } from './core/component/state/format';
 export * from './ctx';
 export * from './messaging';
 export type * from './types';

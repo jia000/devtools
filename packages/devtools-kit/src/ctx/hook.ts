@@ -1,8 +1,15 @@
 import { createHooks } from 'hookable';
 
+import type { MNode } from '@tmagic/core';
+
 export interface DevToolsPluginAPIHookPayloads {
   [DevToolsPluginAPIHookKeys.GET_DSL]: {
     inspectorId: string;
+  };
+  [DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG]: {
+    inspectorId: string;
+    nodeId: string;
+    config: MNode;
   };
 }
 
@@ -10,14 +17,19 @@ export interface DevToolsPluginAPIHooks {
   [DevToolsPluginAPIHookKeys.GET_DSL]: (
     payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.GET_DSL],
   ) => void;
+  [DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG]: (
+    payload: DevToolsPluginAPIHookPayloads[DevToolsPluginAPIHookKeys.EDIT_NODE_CONFIG],
+  ) => void;
 }
 
 export enum DevToolsPluginAPIHookKeys {
   GET_DSL = 'getDsl',
+  EDIT_NODE_CONFIG = 'editNodeConfig',
 }
 
 export enum DevToolsContextHookKeys {
   SEND_DSL = 'sendDsl',
+  SEND_NODE_CONFIG = 'sendNodeConfig',
 }
 
 // devtools client hooks

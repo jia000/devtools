@@ -7,7 +7,10 @@ import baseConfig from './vite.base.config';
 
 export default defineConfig(
   mergeConfig(baseConfig, {
-    base: './',
+    define: {
+      __FEATURE_PROD_DEVTOOLS__: `true`,
+    },
+    base: '/__devtools__',
     plugins: [
       {
         name: 'vite-plugin-copy-devtools-client-bundle',

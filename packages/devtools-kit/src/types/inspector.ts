@@ -1,5 +1,3 @@
-import type { ComponentState, StateBase } from './component';
-
 export interface CustomInspectorOptions {
   id: string;
   label: string;
@@ -45,8 +43,4 @@ export interface CustomInspectorNode {
   tags?: InspectorNodeTag[];
   name?: string;
   file?: string;
-}
-
-export interface CustomInspectorState {
-  [key: string]: (StateBase | Omit<ComponentState, 'type'>)[];
 }

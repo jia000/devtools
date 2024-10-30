@@ -96,6 +96,12 @@ export default defineConfig(
           'state-value-label': 'text-gray-500',
           'state-value-literal': 'text-#03c dark:(text-#997fff)',
           'state-value-string': 'text-#c41a16',
+
+          // state
+          'string-state-type': 'text-#e74c3c dark:(text-#c41a16)',
+          'literal-state-type': 'text-#03c dark:(text-#997fff)',
+          'boolean-state-type': 'text-#27ae60 dark:(text-#abebc6)',
+          'null-state-type': 'text-#999',
         },
         [
           /^theme-card-(\w+)$/,
@@ -113,7 +119,15 @@ export default defineConfig(
           },
         }),
       ],
-      safelist: ['state-value-literal', 'state-value-string', 'i-carbon-ibm-watson-discovery'],
+      safelist: [
+        'state-value-literal',
+        'state-value-string',
+        'i-carbon-ibm-watson-discovery',
+        'string-state-type',
+        'literal-state-type',
+        'boolean-state-type',
+        'null-state-type',
+      ],
     },
   ]),
 );

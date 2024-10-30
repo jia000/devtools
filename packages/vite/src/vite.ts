@@ -118,9 +118,9 @@ export default function VitePluginTMagicDevTools(options?: VitePluginTMagicDevTo
     configResolved(resolvedConfig) {
       config = resolvedConfig;
     },
-    configureServer(server) {
-      configureServer(server);
-    },
+    // configureServer(server) {
+    //   configureServer(server);
+    // },
     async resolveId(importer: string) {
       if (importer === devtoolsOptionsImporter) {
         return resolvedDevtoolsOptions;

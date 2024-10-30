@@ -13,6 +13,7 @@ import '@unocss/reset/tailwind.css';
 import 'uno.css';
 import '@vue/devtools-ui/style.css';
 import '~/assets/styles/main.css';
+import 'vue-json-pretty/lib/styles.css';
 
 import WaitForConnection from '~/components/WaitForConnection.vue';
 import Index from '~/pages/index.vue';
